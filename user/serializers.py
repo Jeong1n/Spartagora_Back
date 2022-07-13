@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from user.models import User
+from user.models import User,UserAssignment
 
 
 
@@ -21,3 +21,18 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True}, 
         }
+
+
+
+
+class UserAssignmentserializer(serializers.ModelSerializer):
+
+    def create(self, validated_data):
+        validated_data['is_active'] = True
+        new_user = UserAssignment(**validated_data)
+        new_user.save()
+        return validated_data
+
+    class Meta:
+        model = UserAssignment
+        fields = "__all__"
