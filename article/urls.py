@@ -3,6 +3,6 @@ from . import views
 from django.conf import settings
 
 
-urlpattern = [
+urlpatterns = [
     path('',views.LowerCategoryView.as_view()),
 ]
