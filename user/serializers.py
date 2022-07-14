@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from user.models import User,UserAssignment
+from user.models import User
 
 
 
@@ -23,16 +23,3 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
 
-
-
-class UserAssignmentserializer(serializers.ModelSerializer):
-
-    def create(self, validated_data):
-        validated_data['is_active'] = True
-        new_user = UserAssignment(**validated_data)
-        new_user.save()
-        return validated_data
-
-    class Meta:
-        model = UserAssignment
-        fields = "__all__"
