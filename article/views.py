@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, permissions
 from .serializers import ArticleSerializer, CommentSerializer
-from .models import Article, Comment
+from .models import Article, Comment,LowerCategory
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from user.serializers import UserSerializer
 from user.models import User
@@ -70,28 +70,16 @@ class LowerTopicBestView(APIView):
     def get(self,request):
         return True
 
-class LowerAskView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-    authentication_class = [JWTAuthentication]
+class LowerCategoryView(APIView):
+    # permission_classes = [permissions.IsAuthenticated]
+    # authentication_class = [JWTAuthentication]
 
-    def get(self,request):
-        return True
+    def get(self,request,id):
+        lower_category = LowerCategory.objects.filter(id=id)  #카테고리 id값
+        articles = Article.objects.filter(lower_category=lower_category) # 카테고리에 속해 있는 게시물 전부 불러오기
+        serialized_data = ArticleSerializer(articles, many=True).data
+        return Response(serialized_data, status=status.HTTP_200_OK)        
 
 
-class LowerTravelEatView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-    authenication_class = [JWTAuthentication]
-    def get(self,request):
-        return True
-    def post(self,request):
-        return True
 
-class LowerHealthView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = [JWTAuthentication]
 
-    def get(self,request):
-        return True
-
-class LowerAnimalView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
