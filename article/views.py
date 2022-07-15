@@ -76,8 +76,17 @@ class LowerCategoryView(APIView):
     # permission_classes = [permissions.IsAuthenticated]
     # authentication_class = [JWTAuthentication]
 
-    def get(self,request,id):
-        lower_category = LowerCategory.objects.filter(id=id)  #카테고리 id값
+    def get(self,request,category_id):
+        lower_category = LowerCategory.objects.get(id=category_id)  #카테고리 id값
         articles = Article.objects.filter(lower_category=lower_category) # 카테고리에 속해 있는 게시물 전부 불러오기
         serialized_data = ArticleSerializer(articles, many=True).data
         return Response(serialized_data, status=status.HTTP_200_OK)        
+
+class count(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_class = [JWTAuthentication]
+
+    def update_counter(self):
+        self.count = self.count + 1
+        self.save()
+
