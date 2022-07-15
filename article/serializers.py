@@ -59,4 +59,4 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        field = "__all__"
+        fields = "__all__"
