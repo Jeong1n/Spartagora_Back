@@ -61,3 +61,11 @@ class LowerHealthView(APIView):
 
 class LowerAnimalView(APIView):
     permission_classes = [permissions.IsAuthenticated]
+
+class topicbestview(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    def get(self,request):
+        topic_best= Article.objects.all().order_by('-count')
+        bestarticle_data = ArticleSerializer(topic_best, many=True).data
+        return Response({"besttopic": topic_best}, status=status.HTTP_200_OK)
