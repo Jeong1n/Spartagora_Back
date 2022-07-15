@@ -44,20 +44,10 @@ class LowerAskView(APIView):
         return True
 
 
-class LowerTravelEatView(APIView):
+class count(APIView):
     permission_classes = [permissions.IsAuthenticated]
-    authenication_class = [JWTAuthentication]
-    def get(self,request):
-        return True
-    def post(self,request):
-        return True
+    authentication_class = [JWTAuthentication]
 
-class LowerHealthView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = [JWTAuthentication]
-
-    def get(self,request):
-        return True
-
-class LowerAnimalView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    def update_counter(self):
+        self.count = self.count + 1
+        self.save()
