@@ -60,7 +60,3 @@ class LowerHealthView(APIView):
 
     def get(self,request):
         return True
-
-class LowerAnimalView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-
