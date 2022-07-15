@@ -68,7 +68,9 @@ class LowerTopicBestView(APIView):
     authentication_classes = [JWTAuthentication]
 
     def get(self,request):
-        return True
+        topic_best= Article.objects.all().order_by('-count')
+        bestarticle_data = ArticleSerializer(topic_best, many=True).data
+        return Response({"besttopic": bestarticle_data}, status=status.HTTP_200_OK)
 
 class LowerCategoryView(APIView):
     # permission_classes = [permissions.IsAuthenticated]
@@ -87,3 +89,4 @@ class count(APIView):
     def update_counter(self):
         self.count = self.count + 1
         self.save()
+
