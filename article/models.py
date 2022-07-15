@@ -30,7 +30,7 @@ class Article(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now_add=True)
     lower_category = models.ForeignKey(LowerCategory, on_delete=models.CASCADE)
-    count = models.integerField(default = 0)
+    count = models.IntegerField(default = 0)
     
     def __str__(self):
         return self.title
