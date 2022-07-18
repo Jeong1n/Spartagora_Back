@@ -69,14 +69,16 @@ class LowerTopicBestView(APIView):
     authentication_classes = [JWTAuthentication]
 
     def get(self,request):
-        return True
+        topic_best= Article.objects.all().order_by('-count')
+        bestarticle_data = ArticleSerializer(topic_best, many=True).data
+        return Response({"besttopic": bestarticle_data}, status=status.HTTP_200_OK)
 
 class LowerCategoryView(APIView):
     # permission_classes = [permissions.IsAuthenticated]
     # authentication_class = [JWTAuthentication]
 
-    def get(self,request,id):
-        lower_category = LowerCategory.objects.filter(id=id)  #카테고리 id값
+    def get(self,request,category_id):
+        lower_category = LowerCategory.objects.get(id=category_id)  #카테고리 id값
         articles = Article.objects.filter(lower_category=lower_category) # 카테고리에 속해 있는 게시물 전부 불러오기
         serialized_data = ArticleSerializer(articles, many=True).data
         return Response(serialized_data, status=status.HTTP_200_OK)        
@@ -99,3 +101,4 @@ class TaggedObjectLV(APIView):
         context = super().get_context_data(**kwargs)
         context['tagname'] = self.kwargs['tag']
         return Response(context, status=status.HTTP_200_OK)  
+

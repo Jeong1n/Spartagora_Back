@@ -32,14 +32,14 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
-    image_path = serializers.SerializerMethodField(read_only=True)
+    # image_path = serializers.SerializerMethodField(read_only=True)
 
-    def get_image_path(self, obj):
-        return 'http://127.0.0.1:8000'+obj.image.url
-    username = serializers.SerializerMethodField(read_only=True)
+    # def get_image_path(self, obj):
+    #     return 'http://127.0.0.1:8000'+obj.image.url
+    # username = serializers.SerializerMethodField(read_only=True)
 
-    def get_username(self, obj):
-        return obj.user.username
+    # def get_username(self, obj):
+    #     return obj.user.username
 
     def create(self, validated_data):
         # User object 생성
@@ -59,4 +59,4 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        field = ["user","title","content","image","create_at","lower_category"]
+        fields = "__all__"

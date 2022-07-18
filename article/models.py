@@ -6,9 +6,6 @@ from taggit.managers import TaggableManager
 
 # like 모델,tag 앱 논의 필요
 
-class Comment(models.Model):
-    content = models.TextField(max_length=500)
-    create_at = models.DateTimeField(auto_now_add=True)
 
 
 class UpperCategory(models.Model):    
@@ -34,8 +31,19 @@ class Article(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now_add=True)
     lower_category = models.ForeignKey(LowerCategory, on_delete=models.CASCADE)
-    count = models.integerField(default = 0)
     tags = TaggableManager(blank=True)
+    count = models.IntegerField(default = 0)
+    
+    def __str__(self):
+        return self.title
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    article = models. ForeignKey(Article, on_delete=models.CASCADE)
+    content = models.TextField(max_length=500)
+    create_at = models.DateTimeField(auto_now_add=True)
+
 
 # class Like(models.Model):
 #     article = models.ForeignKey(Article)
