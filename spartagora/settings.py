@@ -43,7 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'taggit.apps.TaggitAppConfig',
 ]
+
+TAGGIT_CASE_INSENSITIVE = True
+TAGGIT_LIMIT = 50
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
