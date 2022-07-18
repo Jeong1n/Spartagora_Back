@@ -7,6 +7,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from user.serializers import UserSerializer
 from user.models import User
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, TemplateView
 # Create your views here.
 
 class ArticlePostView(APIView):
@@ -80,10 +81,21 @@ class LowerCategoryView(APIView):
         serialized_data = ArticleSerializer(articles, many=True).data
         return Response(serialized_data, status=status.HTTP_200_OK)        
 
-class count(APIView):
+class Count(APIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_class = [JWTAuthentication]
 
     def update_counter(self):
         self.count = self.count + 1
         self.save()
+
+class TaggedObjectLV(APIView):
+    model = Article
+
+    def get_queryset(self):
+        tag =  Article.objects.filter(tags__name=self.kwargs.get('tag'))
+        return Response(tag, status=status.HTTP_200_OK)  
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tagname'] = self.kwargs['tag']
+        return Response(context, status=status.HTTP_200_OK)  

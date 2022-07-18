@@ -1,6 +1,7 @@
 from django.db import models
 from django.forms import CharField
 from user.models import User
+from taggit.managers import TaggableManager
 # Create your models here.
 
 # like 모델,tag 앱 논의 필요
@@ -34,8 +35,7 @@ class Article(models.Model):
     update_at = models.DateTimeField(auto_now_add=True)
     lower_category = models.ForeignKey(LowerCategory, on_delete=models.CASCADE)
     count = models.integerField(default = 0)
-
-
+    tags = TaggableManager(blank=True)
 
 # class Like(models.Model):
 #     article = models.ForeignKey(Article)
