@@ -44,7 +44,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # User object 생성
         article = Article(**validated_data)
-        Article.save()
+        article.save()
         return validated_data
 
     def update(self, instance, validated_data):
