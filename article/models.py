@@ -42,7 +42,7 @@ class Comment(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     article = models. ForeignKey(Article, on_delete=models.CASCADE)
     content = models.TextField(max_length=500)
-    create_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 # class Like(models.Model):

@@ -91,3 +91,39 @@ class TaggedObjectLV(APIView):
         context['tagname'] = self.kwargs['tag']
         return Response(context, status=status.HTTP_200_OK)  
 
+class CommentView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+
+    def get(self,request,obj_id):
+        get_article = Article.objects.get(id = obj_id)
+        get_comment = Comment.objects.filter(article = get_article)
+        serialized_data = CommentSerializer(get_comment, many=True).data
+        return Response(serialized_data, status=status.HTTP_200_OK)
+    
+    def post(self,request,obj_id):
+        request.data["user"] = request.user.id
+        request.data["article"] = obj_id
+        serialized_comment = CommentSerializer(
+            data=request.data, context={"request":request})
+        print(serialized_comment)
+        if serialized_comment.is_valid():
+            serialized_comment.save()
+            return Response(serialized_comment.data, status=status.HTTP_200_OK)
+        return Response(serialized_comment.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self,request,obj_id): #여기서의 obj_id는 댓글 
+        comment_get = Comment.objects.get(id=obj_id)
+        serialized_comment = CommentSerializer(comment_get, data=request.data, partial=True)
+        # if request.user.id == comment_get.user.id:
+        if serialized_comment.is_valid():
+            serialized_comment.save()
+            return Response(serialized_comment.data, status=status.HTTP_200_OK)
+        return Response(serialized_comment.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self,request,obj_id): #여기서의 obj_id도 댓글
+        comment_get = Comment.objects.get(id=obj_id)
+        if request.user.id == comment_get.user.id:
+            comment_get.delete()
+            return Response({"message":"댓글이 삭제되었습니다."}, status=status.HTTP_200_OK)
+        return Response({"message":"삭제할 권한이 없습니다"}, status=status.HTTP_400_BAD_REQUEST)
