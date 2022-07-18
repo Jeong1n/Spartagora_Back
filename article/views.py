@@ -10,18 +10,6 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, TemplateView
 # Create your views here.
 
-class ArticlePostView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = [JWTAuthentication]
-
-    def post(self,request):
-        request.data['user'] = request.user.id
-        article_serializer = ArticleSerializer(data=request.data)
-        if article_serializer.is_valid():
-            article_serializer.save()
-
-            return Response({"message": '작성완료'}, status=status.HTTP_200_OK)
-
 
 
 class MainPageView(APIView):
@@ -29,41 +17,41 @@ class MainPageView(APIView):
     authentication_classes = [JWTAuthentication]
     
     def get(self, request):
-        Article = Article.objects.order_by('-created_at')
-        Article_data = ArticleSerializer(Article, many=True).data
-        return Response({'Article_data': Article_data}, status=status.HTTP_200_OK)
+        article = Article.objects.order_by('-created_at')
+        article_data = ArticleSerializer(article, many=True).data
+        return Response({'article_data': article_data}, status=status.HTTP_200_OK)
     def post(self, request):
         print(request.data)
         request.data['user'] = request.user.id
-        Article_serializer = ArticleSerializer(data=request.data)
-        if Article_serializer.is_valid():
+        article_serializer = ArticleSerializer(data=request.data)
+        if article_serializer.is_valid():
             # validator를 통과했을 경우 데이터 저장
-            Article_serializer.save()
+            article_serializer.save()
 
             return Response({"message": "정상"}, status=status.HTTP_200_OK)
 
-        return Response(Article_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def put(self, request, obj_id):
-        Article = Article.objects.get(id=obj_id)
-
-        # 기본적인 사용 방법은 validator, creater와 다르지 않다.
-        # update를 해줄 경우 obj, data(수정할 dict)를 입력한다.
-        # partial=True로 설정해 주면 일부 필드만 입력해도 에러가 발생하지 않는다.
-        Article_serializer = ArticleSerializer(
-            Article, data=request.data, partial=True)
-        if Article_serializer.is_valid():
-            # validator를 통과했을 경우 데이터 저장
-            Article_serializer.save()
-            return Response({"message": "정상"}, status=status.HTTP_200_OK)
-        return Response(Article_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(article_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    @login_required()
-    def delete(request, obj_id):
+    def put(self, request, obj_id):
+        print(request.user.id)
+        article = Article.objects.get(id=obj_id)
+        # user = User.objects.get(id=article.user.id)
+        if request.user.id == article.user.id:
+            article_serializer = ArticleSerializer(
+                article, data=request.data, partial=True)
+            if article_serializer.is_valid():
+                # validator를 통과했을 경우 데이터 저장
+                article_serializer.save()
+                return Response({"message": "정상"}, status=status.HTTP_200_OK)
+        return Response(article_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self,request, obj_id):
+        print(obj_id)
         my_Article = Article.objects.get(id=obj_id)
-        my_Article.delete()
-        return Response({"message": "로그아웃 성공!"})
-
+        if request.user.id == my_Article.user.id:
+            my_Article.delete()
+            return Response({"message": "삭제 완료!"})
+        return Response({"message":"권한이 없습니다"},status=status.HTTP_400_BAD_REQUEST)
 class LowerTopicBestView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
@@ -82,6 +70,7 @@ class LowerCategoryView(APIView):
         articles = Article.objects.filter(lower_category=lower_category) # 카테고리에 속해 있는 게시물 전부 불러오기
         serialized_data = ArticleSerializer(articles, many=True).data
         return Response(serialized_data, status=status.HTTP_200_OK)        
+
 
 class Count(APIView):
     permission_classes = [permissions.IsAuthenticated]
