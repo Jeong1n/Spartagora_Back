@@ -99,7 +99,7 @@ class CommentView(APIView):
         get_article = Article.objects.get(id = obj_id)
         get_comment = Comment.objects.filter(article = get_article)
         serialized_data = CommentSerializer(get_comment, many=True).data
-        return Response(serialized_data, status=status.HTTP_200_OK)
+        return Response({"serialized_data":serialized_data}, status=status.HTTP_200_OK)
     
     def post(self,request,obj_id):
         request.data["user"] = request.user.id

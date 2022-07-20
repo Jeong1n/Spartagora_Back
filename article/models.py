@@ -48,3 +48,9 @@ class Comment(models.Model):
 # class Like(models.Model):
 #     article = models.ForeignKey(Article)
 #     user = models.ForeignKey(User)
+
+class Assignment(models.Model):
+    assignment = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.assignment
