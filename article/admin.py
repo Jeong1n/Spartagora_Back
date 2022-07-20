@@ -6,6 +6,6 @@ admin.site.register(models.Article)
 admin.site.register(models.Comment)
 admin.site.register(models.UpperCategory)
 admin.site.register(models.LowerCategory)
-admin.site.register(models.Assignment)
+
 
 
