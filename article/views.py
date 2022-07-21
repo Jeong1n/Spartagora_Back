@@ -68,7 +68,9 @@ class LowerCategoryView(APIView):
     def get(self,request,category_id):
         lower_category = LowerCategory.objects.get(id=category_id)  #카테고리 id값
         articles = Article.objects.filter(lower_category=lower_category) # 카테고리에 속해 있는 게시물 전부 불러오기
-        serialized_data = ArticleSerializer(articles, many=True).data
+        article = articles.order_by('-created_at')
+        print(article)
+        serialized_data = ArticleSerializer(article, many=True).data
         return Response(serialized_data, status=status.HTTP_200_OK)        
 
 
@@ -127,3 +129,34 @@ class CommentView(APIView):
             comment_get.delete()
             return Response({"message":"댓글이 삭제되었습니다."}, status=status.HTTP_200_OK)
         return Response({"message":"삭제할 권한이 없습니다"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class LikeView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    
+
+    def get(request,obj_id):
+        article_get = Article.objects.get(id=obj_id)
+        print(article_get)
+        return True
+    
+    def post(self,request,obj_id):
+        article_get = Article.objects.get(id=obj_id)
+        if request.user in article_get.like.all():
+            for i in article_get.like.all():
+                if request.user == i:
+                    article_get.like.remove(i)
+                    serialized_data = ArticleSerializer(article_get,data=request.data)
+                    if serialized_data.is_valid():
+                        serialized_data.save()
+                else: continue
+            return Response({"message":"좋아요 취소"}, status=status.HTTP_200_OK)
+        else:    
+            article_get.like.add(request.user.id)
+            serialized_data = ArticleSerializer(article_get,data=request.data)
+            if serialized_data.is_valid():
+                serialized_data.save()
+            return Response({"message":"좋아요 완료"}, status=status.HTTP_200_OK)
+            
