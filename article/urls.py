@@ -9,6 +9,7 @@ urlpatterns = [
     path('<int:category_id>/',views.LowerCategoryView.as_view()),
     path('comment/<int:obj_id>', views.CommentView.as_view()),
     path('test/<int:obj_id>', views.LikeView.as_view()),
+    path('tag/<str:tag>/', views.TaggedObjectLV.as_view(), name='tagged_object_list'),
 ]
 
 
