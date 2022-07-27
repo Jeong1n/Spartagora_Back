@@ -49,4 +49,3 @@ class Comment(models.Model):
 # class Like(models.Model):
 #     article = models.ForeignKey(Article)
 #     user = models.ForeignKey(User)
-
