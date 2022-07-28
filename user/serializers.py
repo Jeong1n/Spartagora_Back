@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from user.models import User
+from user.models import Assignment, User
 
 
 
@@ -22,4 +22,9 @@ class UserSerializer(serializers.ModelSerializer):
             'password': {'write_only': True}, 
         }
 
+class Assignmentserializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Assignment
+        fields = "__all__"
 
