@@ -1,3 +1,4 @@
+from sqlite3 import Timestamp
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status, permissions
@@ -8,6 +9,9 @@ from user.serializers import UserSerializer
 from user.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, TemplateView
+from copy import deepcopy
+import boto3
+from datetime import datetime
 # Create your views here.
 
 
@@ -21,9 +25,19 @@ class MainPageView(APIView):
         article_data = ArticleSerializer(article, many=True).data
         return Response({'article_data': article_data}, status=status.HTTP_200_OK)
     def post(self, request):
-        print(request.data)
-        request.data['user'] = request.user.id
-        article_serializer = ArticleSerializer(data=request.data)
+        data = request.data.copy()
+        data["user"] = request.user.id
+        pic = data["image"][0]
+        filename = datetime.now().strftime('%Y%m%d%H%M%S%f') + pic.name
+        s3 = boto3.client('s3') 
+        s3.put_object( 
+        ACL="public-read", 
+        Bucket="spartagora", 
+        Body=pic, 
+        Key=filename, 
+        ContentType=pic.content_type
+        )
+        article_serializer = ArticleSerializer(data=data)
         if article_serializer.is_valid():
             # validator를 통과했을 경우 데이터 저장
             article_serializer.save()

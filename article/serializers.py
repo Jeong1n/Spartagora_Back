@@ -32,6 +32,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
+    category_set = LowerCategory()
     # image_path = serializers.SerializerMethodField(read_only=True)
 
     # def get_image_path(self, obj):
