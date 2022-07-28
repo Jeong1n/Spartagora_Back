@@ -41,6 +41,13 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     # def get_username(self, obj):
     #     return obj.user.username
+    assignment = serializers.SerializerMethodField(read_only=True)
+    comment_count = serializers.SerializerMethodField(read_only=True)
+    def get_assignment(self, obj):
+        return(obj.user.assignment.assignment)
+
+    def get_comment_count(self, obj):
+        return(obj.comment_set.count())
 
     def create(self, validated_data):
         # User object 생성
