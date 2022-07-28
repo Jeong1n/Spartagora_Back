@@ -78,9 +78,11 @@ class Count(APIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_class = [JWTAuthentication]
 
-    def update_counter(self):
-        self.count = self.count + 1
-        self.save()
+    def post(self, request, obj_id):
+        article = Article.objects.get(id=obj_id)
+        article.count += 1
+        article.save()
+        return Response(status=status.HTTP_200_OK)
 
 class TaggedObjectLV(APIView):
     model = Article
@@ -108,7 +110,6 @@ class CommentView(APIView):
         request.data["article"] = obj_id
         serialized_comment = CommentSerializer(
             data=request.data, context={"request":request})
-        print(serialized_comment)
         if serialized_comment.is_valid():
             serialized_comment.save()
             return Response(serialized_comment.data, status=status.HTTP_200_OK)

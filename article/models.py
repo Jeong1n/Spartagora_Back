@@ -44,9 +44,3 @@ class Comment(models.Model):
     article = models. ForeignKey(Article, on_delete=models.CASCADE)
     content = models.TextField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
-
-
-# class Like(models.Model):
-#     article = models.ForeignKey(Article)
-#     user = models.ForeignKey(User)
-
