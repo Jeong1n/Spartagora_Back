@@ -26,8 +26,7 @@ class LowerCategory(models.Model):
 class Article(models.Model):
     user = models.ForeignKey(User, related_name="article_user",on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
-    content = models.TextField(max_length=500)
-    image = models.CharField(max_length=500, blank=True)
+    content = models.CharField(max_length=5000000)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     lower_category = models.ForeignKey(LowerCategory, on_delete=models.CASCADE)

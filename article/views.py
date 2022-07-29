@@ -28,16 +28,16 @@ class MainPageView(APIView):
     def post(self, request):
         data = request.data.copy()
         data["user"] = request.user.id
-        pic = data["image"][0]
-        filename = datetime.now().strftime('%Y%m%d%H%M%S%f') + pic.name
-        s3 = boto3.client('s3') 
-        s3.put_object( 
-        ACL="public-read", 
-        Bucket="spartagora", 
-        Body=pic, 
-        Key=filename, 
-        ContentType=pic.content_type
-        )
+        # pic = data["image"][0]
+        # filename = datetime.now().strftime('%Y%m%d%H%M%S%f') + pic.name
+        # s3 = boto3.client('s3') 
+        # s3.put_object( 
+        # ACL="public-read", 
+        # Bucket="spartagora", 
+        # Body=pic, 
+        # Key=filename, 
+        # ContentType=pic.content_type
+        # )
         article_serializer = ArticleSerializer(data=data)
         if article_serializer.is_valid():
             # validator를 통과했을 경우 데이터 저장
