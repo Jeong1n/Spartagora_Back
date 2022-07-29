@@ -118,7 +118,7 @@ class CommentView(APIView):
         get_article = Article.objects.get(id = obj_id)
         get_comment = Comment.objects.filter(article = get_article)
         serialized_data = CommentSerializer(get_comment, many=True).data
-        return Response({"serialized_data":serialized_data}, status=status.HTTP_200_OK)
+        return Response(serialized_data, status=status.HTTP_200_OK)
     
     def post(self,request,obj_id):
         request.data["user"] = request.user.id
@@ -146,7 +146,15 @@ class CommentView(APIView):
             return Response({"message":"댓글이 삭제되었습니다."}, status=status.HTTP_200_OK)
         return Response({"message":"삭제할 권한이 없습니다"}, status=status.HTTP_400_BAD_REQUEST)
 
+class DetailView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
+    def get(self,request,obj_id):
+        article_get = Article.objects.get(id=obj_id)
+        print(request.user)
+        serialized_data = ArticleSerializer(article_get).data
+        return Response(serialized_data, status=status.HTTP_200_OK)
 
 class LikeView(APIView):
     permission_classes = [permissions.IsAuthenticated]

@@ -1,6 +1,7 @@
 from dataclasses import field
+from pytz import timezone
 from rest_framework import serializers
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.utils import dateformat
 from .models import Comment, UpperCategory, LowerCategory, Article
 
@@ -24,7 +25,7 @@ class CommentSerializer(serializers.ModelSerializer):
         return obj.user.username
 
     def get_created_at(self, obj):
-        return dateformat.format(obj.created_at, 'y.m.d H시 i분')
+        return dateformat.format(obj.created_at, 'y.m.d H:i')
 
     class Meta:
         model = Comment
@@ -41,9 +42,14 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     # def get_username(self, obj):
     #     return obj.user.username
-    created_at = serializers.SerializerMethodField()
+    created_at = serializers.SerializerMethodField(read_only=True)
     assignment = serializers.SerializerMethodField(read_only=True)
     comment_count = serializers.SerializerMethodField(read_only=True)
+    lower_category_name = serializers.SerializerMethodField(read_only=True)
+
+    def get_lower_category_name(self, obj):
+        return(obj.lower_category.lower_category)
+
     def get_assignment(self, obj):
         return(obj.user.assignment.assignment)
 

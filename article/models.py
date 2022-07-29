@@ -18,10 +18,8 @@ class UpperCategory(models.Model):
 class LowerCategory(models.Model):
     upper_category = models.ForeignKey(UpperCategory, on_delete=models.CASCADE)
     lower_category = models.CharField(max_length=100)
-    
     def __str__(self):
         return self.lower_category
-
 
 class Article(models.Model):
     user = models.ForeignKey(User, related_name="article_user",on_delete=models.CASCADE)
