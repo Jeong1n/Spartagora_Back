@@ -33,7 +33,7 @@ class Article(models.Model):
     lower_category = models.ForeignKey(LowerCategory, on_delete=models.CASCADE)
     tags = TaggableManager(blank=True)
     count = models.IntegerField(default = 0)
-    # like = models.ManyToManyField(User, related_name="article_like")
+    like = models.ManyToManyField(User, related_name="article_like")
     
     def __str__(self):
         return self.title
