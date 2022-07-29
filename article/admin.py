@@ -8,4 +8,3 @@ admin.site.register(models.UpperCategory)
 admin.site.register(models.LowerCategory)
 
 
-
