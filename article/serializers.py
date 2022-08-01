@@ -76,8 +76,8 @@ class ArticleSerializer(serializers.ModelSerializer):
         return instance
 
     class Meta:
-        # extra_kwargs= {
-        #     "like" : {"read_only" : True}
-        # }
+        extra_kwargs= {
+            "like" : {"read_only" : True}
+        }
         model = Article
         fields = "__all__"

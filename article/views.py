@@ -48,7 +48,7 @@ class MainPageView(APIView):
         return Response(article_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def put(self, request, obj_id):
-        print(request.user.id)
+        
         article = Article.objects.get(id=obj_id)
         # user = User.objects.get(id=article.user.id)
         if request.user.id == article.user.id:
