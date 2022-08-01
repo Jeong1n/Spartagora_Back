@@ -31,6 +31,7 @@ class Article(models.Model):
     tags = TaggableManager(blank=True)
     count = models.IntegerField(default = 0)
     like = models.ManyToManyField(User, related_name="article_like", blank=True)
+    nickname =models.CharField(max_length=50, default='')
     
     def __str__(self):
         return self.title

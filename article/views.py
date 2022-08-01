@@ -93,7 +93,8 @@ class Count(APIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_class = [JWTAuthentication]
 
-    def post(self, request, obj_id):
+    def get(self, request, obj_id):
+        print("1")
         article = Article.objects.get(id=obj_id)
         article.count += 1
         article.save()
@@ -123,8 +124,9 @@ class CommentView(APIView):
     def post(self,request,obj_id):
         request.data["user"] = request.user.id
         request.data["article"] = obj_id
+        request.data["content"] = request.data["comment"]
         serialized_comment = CommentSerializer(
-            data=request.data, context={"request":request})
+            data=request.data)
         if serialized_comment.is_valid():
             serialized_comment.save()
             return Response(serialized_comment.data, status=status.HTTP_200_OK)
@@ -152,21 +154,16 @@ class DetailView(APIView):
 
     def get(self,request,obj_id):
         article_get = Article.objects.get(id=obj_id)
-        print(request.user)
         serialized_data = ArticleSerializer(article_get).data
-        return Response(serialized_data, status=status.HTTP_200_OK)
+        serialized_data['boolean'] = request.user in article_get.like.all()
+        return Response(serialized_data,status=status.HTTP_200_OK)
 
 class LikeView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
     
-
-    def get(request,obj_id):
-        article_get = Article.objects.get(id=obj_id)
-        print(article_get)
-        return True
     
-    def post(self,request,obj_id):
+    def get(self,request,obj_id):
         article_get = Article.objects.get(id=obj_id)
         if request.user in article_get.like.all():
             for i in article_get.like.all():
