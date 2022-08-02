@@ -67,6 +67,9 @@ class MainPageView(APIView):
             my_Article.delete()
             return Response({"message": "삭제 완료!"})
         return Response({"message":"권한이 없습니다"},status=status.HTTP_400_BAD_REQUEST)
+
+
+        
 class LowerTopicBestView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
