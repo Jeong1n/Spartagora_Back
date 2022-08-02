@@ -18,6 +18,7 @@ class UpperCategory(models.Model):
 class LowerCategory(models.Model):
     upper_category = models.ForeignKey(UpperCategory, on_delete=models.CASCADE)
     lower_category = models.CharField(max_length=100)
+    lower_category_url = models.CharField(max_length=40, default='')
     def __str__(self):
         return self.lower_category
 

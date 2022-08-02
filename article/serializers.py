@@ -1,4 +1,5 @@
 from dataclasses import field
+from re import T
 from pytz import timezone
 from rest_framework import serializers
 from datetime import datetime, timedelta
@@ -46,6 +47,10 @@ class ArticleSerializer(serializers.ModelSerializer):
     assignment = serializers.SerializerMethodField(read_only=True)
     comment_count = serializers.SerializerMethodField(read_only=True)
     lower_category_name = serializers.SerializerMethodField(read_only=True)
+    lower_category_url = serializers.SerializerMethodField(read_only=True)
+
+    def get_lower_category_url(self,obj):
+        return(obj.lower_category.lower_category_url)
 
     def get_lower_category_name(self, obj):
         return(obj.lower_category.lower_category)
