@@ -69,7 +69,7 @@ class MainPageView(APIView):
         return Response({"message":"권한이 없습니다"},status=status.HTTP_400_BAD_REQUEST)
 
 
-        
+
 class LowerTopicBestView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
@@ -77,7 +77,7 @@ class LowerTopicBestView(APIView):
     def get(self,request):
         topic_best= Article.objects.all().order_by('-count')
         bestarticle_data = ArticleSerializer(topic_best, many=True).data
-        return Response({"besttopic": bestarticle_data}, status=status.HTTP_200_OK)
+        return Response(bestarticle_data, status=status.HTTP_200_OK)
 
 class LowerCategoryView(APIView):
     # permission_classes = [permissions.IsAuthenticated]
