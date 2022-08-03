@@ -6,7 +6,7 @@
    * 익명성이 보장된 상태에서 다양한 주제를 관해 이야기하는 커뮤니티
    <br><br>
    <div align="center">
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
+   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
    <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=Django&logoColor=white">
    <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=SQLite&logoColor=white">
   </div>
@@ -50,9 +50,10 @@
 * 머신러닝 글 필터링 : 안정환
 
 ## 팀원별 역할
-* 서정인 김정후 : 백앤드 , JS 연동
-* 안정환 : 프론트앤드 , 머신러닝
-* 김혁진 : 프론트앤드 , 배포
+* <a href="https://github.com/Jeong1n"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"><a> 서정인 : 백앤드 , JS 연동
+* <a href="https://github.com/fattysphinxx"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"><a> 김정후 : 백앤드 , JS 연동
+* <a href="https://github.com/ajh1531"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"><a> 안정환 : 프론트앤드 , 머신러닝
+* <a href="https://github.com/5aim"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"><a> 김혁진 : 프론트앤드 , 배포
 
 ## 팀원간 약속
 * 1 day 1 commit !!!!
