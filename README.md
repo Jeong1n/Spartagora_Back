@@ -50,11 +50,13 @@
 * 머신러닝 글 필터링 : 안정환
 
 ## 팀원별 역할
-* <a href="https://github.com/Jeong1n"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"><a> 서정인 : 백앤드 , JS 연동
-* <a href="https://github.com/fattysphinxx"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"><a> 김정후 : 백앤드 , JS 연동
-* <a href="https://github.com/ajh1531"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"><a> 안정환 : 프론트앤드 , 머신러닝
-* <a href="https://github.com/5aim"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"><a> 김혁진 : 프론트앤드 , 배포
-
+| 팀원 | 이름 | 역할 | 깃허브 |
+|:----------:|:----------:|:----------:|:----------:|
+| **서크라테스** | 서정인 | 팀장 & 백엔드 |<a href="https://github.com/Jeong1n"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"><a>|
+| **안리스토텔리스** | 안정환 | 딥러닝 & 프론트엔드 |<a href="https://github.com/fattysphinxx"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"><a>|
+| **후라톤** | 김정후 | 백엔드 |<a href="https://github.com/ajh1531"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"><a>|
+| **혁피스트** | 김혁진 | 프론트엔드 |<a href="https://github.com/5aim"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"><a>|
+  
 ## 팀원간 약속
 * 1 day 1 commit !!!!
 * API Table, DB 구성을 아주 체계적이고 확실하게.
