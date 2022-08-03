@@ -4,6 +4,13 @@
 * sparta + agora = spartagora
    * 스파르타코딩클럽 과정을 수강중 혹은 수료한 학생들의 익명 커뮤니티
    * 익명성이 보장된 상태에서 다양한 주제를 관해 이야기하는 커뮤니티
+   <br><br>
+   <div align="center">
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
+   <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=Django&logoColor=white">
+   <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=SQLite&logoColor=white">
+  </div>
+
    
 ## Environment
 * asgiref==3.5.2
