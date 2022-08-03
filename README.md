@@ -4,7 +4,29 @@
 * sparta + agora = spartagora
    * 스파르타코딩클럽 과정을 수강중 혹은 수료한 학생들의 익명 커뮤니티
    * 익명성이 보장된 상태에서 다양한 주제를 관해 이야기하는 커뮤니티
-  
+   
+## Environment
+asgiref==3.5.2
+backports.zoneinfo==0.2.1
+boto3==1.24.39
+botocore==1.27.39
+Django==4.0.6
+django-classy-tags==3.0.1
+django-cors-headers==3.13.0
+django-taggit==3.0.0
+django-taggit-templatetags2==1.6.1
+djangorestframework==3.13.1
+djangorestframework-simplejwt==5.2.0
+jmespath==1.0.1
+PyJWT==2.4.0
+python-dateutil==2.8.2
+pytz==2022.1
+s3transfer==0.6.0
+six==1.16.0
+sqlparse==0.4.2
+tzdata==2022.1
+urllib3==1.26.11
+
 ## ERD
 ![image](https://user-images.githubusercontent.com/102134953/178625920-d3ef10a0-a71e-4b8f-a4c2-7daaf890eea1.png)
 
