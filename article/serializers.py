@@ -48,6 +48,10 @@ class ArticleSerializer(serializers.ModelSerializer):
     comment_count = serializers.SerializerMethodField(read_only=True)
     lower_category_name = serializers.SerializerMethodField(read_only=True)
     lower_category_url = serializers.SerializerMethodField(read_only=True)
+    star_name = serializers.SerializerMethodField(read_only=True)
+
+    def get_star_name(self,obj):
+        return(obj.star.star)
 
     def get_lower_category_url(self,obj):
         return(obj.lower_category.lower_category_url)
