@@ -7,6 +7,13 @@ from taggit.managers import TaggableManager
 
 # like 모델,tag 앱 논의 필요
 
+class Star(models.Model):
+    star = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.star
+
+
 class UpperCategory(models.Model):    
     upper_category = models.CharField(max_length=100)
 
@@ -32,9 +39,14 @@ class Article(models.Model):
     count = models.IntegerField(default = 0)
     like = models.ManyToManyField(User, related_name="article_like", blank=True)
     nickname =models.CharField(max_length=50, default='')
+    star = models.ForeignKey(Star, default='', on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.title
+        if self.title:
+            return self.title
+        else:
+            return self.content
+
 
 
 class Comment(models.Model):

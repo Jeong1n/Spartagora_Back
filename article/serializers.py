@@ -48,8 +48,14 @@ class ArticleSerializer(serializers.ModelSerializer):
     comment_count = serializers.SerializerMethodField(read_only=True)
     lower_category_name = serializers.SerializerMethodField(read_only=True)
     lower_category_url = serializers.SerializerMethodField(read_only=True)
-    # 0000
-    
+    article_star = serializers.SerializerMethodField(read_only=True)
+
+    def get_article_star(self,obj):
+        try:
+            return(obj.star.star)
+        except:
+            return None
+
     def get_lower_category_url(self,obj):
         return(obj.lower_category.lower_category_url)
 
@@ -83,7 +89,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         extra_kwargs= {
-            "like" : {"read_only" : True}
+            "like" : {"read_only" : True},
         }
         model = Article
         fields = "__all__"
