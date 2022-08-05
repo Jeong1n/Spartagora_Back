@@ -61,7 +61,6 @@ class MainPageView(APIView):
         return Response(article_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def delete(self,request, obj_id):
-        print(obj_id)
         my_Article = Article.objects.get(id=obj_id)
         if request.user.id == my_Article.user.id:
             my_Article.delete()
@@ -88,7 +87,6 @@ class LowerCategoryView(APIView):
         lower_category = LowerCategory.objects.get(id=category_id)  #카테고리 id값
         articles = Article.objects.filter(lower_category=lower_category) # 카테고리에 속해 있는 게시물 전부 불러오기
         article = articles.order_by('-created_at')
-        print(article)
         serialized_data = ArticleSerializer(article, many=True).data
         return Response(serialized_data, status=status.HTTP_200_OK)        
 
@@ -98,7 +96,6 @@ class Count(APIView):
     authentication_class = [JWTAuthentication]
 
     def get(self, request, obj_id):
-        print("1")
         article = Article.objects.get(id=obj_id)
         article.count += 1
         article.save()
