@@ -30,7 +30,7 @@ class LowerCategory(models.Model):
 
 class Article(models.Model):
     user = models.ForeignKey(User, related_name="article_user",on_delete=models.CASCADE)
-    title = models.CharField(max_length=50, default='')
+    title = models.CharField(max_length=50, default='', blank=True)
     content = models.CharField(max_length=5000000)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
