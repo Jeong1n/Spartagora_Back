@@ -1,7 +1,14 @@
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.db import models
 
+
 # Create your models here.
+class Assignment(models.Model):
+    assignment = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.assignment
+
 
 class UserManager(BaseUserManager):
     def create_user(self, username, password=None):
@@ -30,6 +37,7 @@ class User(AbstractBaseUser):
     username = models.CharField("아이디", max_length=20, unique=True)
     password = models.CharField("비밀번호", max_length=200)
     join_date = models.DateTimeField("가입날짜", auto_now_add=True)
+    assignment = models.ForeignKey(Assignment, on_delete=models.SET_NULL, null=True)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)

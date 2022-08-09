@@ -1,6 +1,8 @@
 from dataclasses import field
+from re import T
+from pytz import timezone
 from rest_framework import serializers
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.utils import dateformat
 from .models import Comment, UpperCategory, LowerCategory, Article
 
@@ -24,7 +26,7 @@ class CommentSerializer(serializers.ModelSerializer):
         return obj.user.username
 
     def get_created_at(self, obj):
-        return dateformat.format(obj.created_at, 'y.m.d H시 i분')
+        return dateformat.format(obj.created_at, 'y.m.d H:i')
 
     class Meta:
         model = Comment
@@ -32,19 +34,47 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
-    image_path = serializers.SerializerMethodField(read_only=True)
+    category_set = LowerCategory()
+    # image_path = serializers.SerializerMethodField(read_only=True)
 
-    def get_image_path(self, obj):
-        return 'http://127.0.0.1:8000'+obj.image.url
-    username = serializers.SerializerMethodField(read_only=True)
+    # def get_image_path(self, obj):
+    #     return 'http://127.0.0.1:8000'+obj.image.url
+    # username = serializers.SerializerMethodField(read_only=True)
 
-    def get_username(self, obj):
-        return obj.user.username
+    # def get_username(self, obj):
+    #     return obj.user.username
+    created_at = serializers.SerializerMethodField(read_only=True)
+    assignment = serializers.SerializerMethodField(read_only=True)
+    comment_count = serializers.SerializerMethodField(read_only=True)
+    lower_category_name = serializers.SerializerMethodField(read_only=True)
+    lower_category_url = serializers.SerializerMethodField(read_only=True)
+    article_star = serializers.SerializerMethodField(read_only=True)
+
+    def get_article_star(self,obj):
+        try:
+            return(obj.star.star)
+        except:
+            return None
+
+    def get_lower_category_url(self,obj):
+        return(obj.lower_category.lower_category_url)
+
+    def get_lower_category_name(self, obj):
+        return(obj.lower_category.lower_category)
+
+    def get_assignment(self, obj):
+        return(obj.user.assignment.assignment)
+
+    def get_comment_count(self, obj):
+        return(obj.comment_set.count())
+
+    def get_created_at(self, obj):
+        return dateformat.format(obj.created_at, 'y.m.d H:i')
 
     def create(self, validated_data):
         # User object 생성
         article = Article(**validated_data)
-        Article.save()
+        article.save()
         return validated_data
 
     def update(self, instance, validated_data):
@@ -58,5 +88,8 @@ class ArticleSerializer(serializers.ModelSerializer):
         return instance
 
     class Meta:
+        extra_kwargs= {
+            "like" : {"read_only" : True},
+        }
         model = Article
-        field = ["user","title","content","image","create_at","lower_category"]
+        fields = "__all__"
