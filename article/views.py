@@ -110,7 +110,7 @@ class TaggedObjectLV(APIView):
     def get_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tagname'] = self.kwargs['tag']
-        return Response(context, status=status.HTTP_200_OK)  
+        return Response(context, status=status.HTTP_200_OK)
 
 class CommentView(APIView):
     permission_classes = [permissions.IsAuthenticated]
