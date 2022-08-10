@@ -36,8 +36,8 @@ sentencepiece==0.1.91
 six==1.16.0
 sqlparse==0.4.2
 tokenizers==0.9.3
-torch==1.6.0+cpu
-torchvision==0.7.0+cpu
+torch==1.6.0
+torchvision==0.7.0
 tqdm==4.64.0
 transformers==3.5.0
 tzdata==2022.1
