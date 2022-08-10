@@ -102,8 +102,7 @@ DATABASES = {
         'PORT': os.environ.get('SQL_PORT', '5432'),
     }
 }
-<<<<<<< HEAD
-=======
+
 # postgresql
 
 # DATABASES = {
@@ -116,7 +115,6 @@ DATABASES = {
 #         'PORT': os.environ.get('SQL_PORT', '5432'),
 #     }
 # }
->>>>>>> 58adea165aba9daeb6ab5e1a5404a4acdefdd616
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
