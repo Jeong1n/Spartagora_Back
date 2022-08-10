@@ -5,12 +5,17 @@ ENV PYTHONUNBUFFERED=1
 RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install -y ffmpeg libgl1-mesa-glx
+
+# postgre build library
 RUN apt-get install libpq-dev
 
+# pip install
 RUN python -m pip install --upgrade pip
 
+# for distribute
 RUN pip3 install gunicorn
 
+# include pip for filtering & spartagora pip
 RUN pip3 install asgiref
 RUN pip3 install backports.zoneinfo
 RUN pip3 install boto3

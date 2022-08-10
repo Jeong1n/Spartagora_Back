@@ -19,4 +19,5 @@ pip-selfcheck.json
 .env
 .env.postgres
 
+.DS_Store
 # End of https://www.toptal.com/developers/gitignore/api/venv
