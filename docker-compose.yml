@@ -18,10 +18,7 @@ services:
     image: postgres:14.4-alpine
     volumes:
       - postgres_db:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_DB=spartagora_back_db
-      - POSTGRES_USER=spartagora_back_3team
-      - POSTGRES_PASSWORD=spartagora_back_password
-
+    env_file:
+      - ./.env.postgres
 volumes:
   postgres_db:
