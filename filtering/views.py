@@ -1,16 +1,11 @@
-
-
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-import requests
-
 
 
 #머신러닝에 필요한 라이브러리
 import sentencepiece
 
 from transformers import RobertaTokenizer, RobertaForSequenceClassification
-import logging
 
 import torch
 from torch.nn import functional as F
