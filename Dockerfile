@@ -11,7 +11,6 @@ COPY requirements.txt /usr/src/app/
 WORKDIR /usr/src/app
 RUN pip3 install torch==1.9.0 torchvision==0.1.6 -f https://download.pytorch.org/whl/torch_stable.html
 RUN pip install transformers
-
 RUN pip install -r requirements.txt
 
 COPY . /usr/src/app/
