@@ -8,6 +8,9 @@ RUN apt-get install -y ffmpeg libgl1-mesa-glx
 RUN apt-get install libpq-dev
 
 RUN python -m pip install --upgrade pip
+
+RUN pip3 install gunicorn
+
 RUN pip3 install asgiref
 RUN pip3 install backports.zoneinfo
 RUN pip3 install boto3
