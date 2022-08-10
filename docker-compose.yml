@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    working_dir: /usr/src/app/
+    volumes:
+      - ./:/usr/src/app/
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+  db:
+    image: postgres:14.4-alpine
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=ai2_back_db
+      - POSTGRES_USER=ai2_back_kihyeonkwon
+      - POSTGRES_PASSWORD=ai2_back_password
+    ports:
+      - "5432:5432"
+
+    
+volumes:
+  postgres_db:
