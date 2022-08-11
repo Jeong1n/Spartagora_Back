@@ -3,7 +3,7 @@ from django.http import JsonResponse
 
 
 #머신러닝에 필요한 라이브러리
-import sentencepiece
+# import sentencepiece
 
 from transformers import RobertaTokenizer, RobertaForSequenceClassification
 

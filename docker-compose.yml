@@ -13,14 +13,17 @@ services:
       - ./.env
     depends_on:
       - db
+
   db:
     image: postgres:14.4-alpine
     volumes:
       - postgres_db:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.postgres
+    ports:
+      - "5432:5432"
     environment:
-      - POSTGRES_DB=spartagora_back_db
-      - POSTGRES_USER=spartagora_back_3team
-      - POSTGRES_PASSWORD=spartagora_back_password
-
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+      
 volumes:
   postgres_db:
