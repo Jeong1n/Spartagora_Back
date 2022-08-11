@@ -41,7 +41,7 @@ RUN pip3 install numpy
 RUN pip3 install packaging
 RUN pip3 install Pillow
 RUN pip3 install protobuf
-RUN pip3 install psycopg2
+RUN pip3 install psycopg2-binary
 RUN pip3 install PyJWT
 RUN pip3 install pyparsing
 RUN pip3 install python-dateutil
