@@ -24,5 +24,6 @@ services:
       - "5432:5432"
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
+      
 volumes:
   postgres_db:

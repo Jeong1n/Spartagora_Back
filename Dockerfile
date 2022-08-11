@@ -9,11 +9,14 @@ RUN apt-get install -y ffmpeg libgl1-mesa-glx
 # postgre build library
 RUN apt-get install libpq-dev
 
+
 # pip install
 RUN python -m pip install --upgrade pip
 
 # for distribute
 RUN pip3 install gunicorn
+
+RUN pip install psycopg2-binary
 
 # include pip for filtering & spartagora pip
 RUN pip3 install asgiref
@@ -41,7 +44,6 @@ RUN pip3 install numpy
 RUN pip3 install packaging
 RUN pip3 install Pillow
 RUN pip3 install protobuf
-RUN pip3 install psycopg2-binary
 RUN pip3 install PyJWT
 RUN pip3 install pyparsing
 RUN pip3 install python-dateutil
@@ -50,7 +52,6 @@ RUN pip3 install regex
 RUN pip3 install requests
 RUN pip3 install s3transfer
 RUN pip3 install sacremoses
-RUN pip3 install sentencepiece
 RUN pip3 install six
 RUN pip3 install sqlparse
 RUN pip3 install tokenizers

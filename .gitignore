@@ -21,8 +21,12 @@ pyvenv.cfg
 .venv
 pip-selfcheck.json
 
-.env
-.env.postgres
+.env.dev
+.env.postgres.dev
+.env.prod
+.env.postgres.prod
+
+
 /DS_Store
 
 
