@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.8"
 
 services:
   nginx:
@@ -26,7 +26,7 @@ services:
       - db
 
   db:
-    image: postgres:14.4-alpine
+    image: postgres:13.3
     volumes:
       - postgres_db:/var/lib/postgresql/data/
     env_file:

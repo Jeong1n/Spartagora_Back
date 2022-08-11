@@ -1,4 +1,4 @@
-FROM python:3.8-buster
+FROM python:3.8-slim-buster
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
@@ -6,17 +6,15 @@ RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install -y ffmpeg libgl1-mesa-glx
 
-# postgre build library
-RUN apt-get install libpq-dev
-
-
 # pip install
 RUN python -m pip install --upgrade pip
 
 # for distribute
 RUN pip3 install gunicorn
-
 RUN pip install psycopg2-binary
+
+# postgre build library
+RUN apt-get install libpq-dev
 
 # include pip for filtering & spartagora pip
 RUN pip3 install asgiref
