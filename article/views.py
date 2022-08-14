@@ -10,7 +10,6 @@ from user.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, TemplateView
 from copy import deepcopy
-import boto3
 from datetime import datetime
 
 # Create your views here.
