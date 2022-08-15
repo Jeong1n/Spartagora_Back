@@ -100,16 +100,16 @@ class Count(APIView):
         article.save()
         return Response(status=status.HTTP_200_OK)
 
-class TaggedObjectLV(APIView):
-    model = Article
+# class TaggedObjectLV(APIView):
+#     model = Article
 
-    def get(self):
-        taggit =  Article.objects.filter(tags__name=self.kwargs.get('tag'))
-        return Response(taggit, status=status.HTTP_200_OK)  
-    def get_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['tagname'] = self.kwargs['tag']
-        return Response(context, status=status.HTTP_200_OK)
+#     def get(self):
+#         taggit =  Article.objects.filter(tags__name=self.kwargs.get('tag'))
+#         return Response(taggit, status=status.HTTP_200_OK)  
+#     def get_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['tagname'] = self.kwargs['tag']
+#         return Response(context, status=status.HTTP_200_OK)
 
 class CommentView(APIView):
     permission_classes = [permissions.IsAuthenticated]
