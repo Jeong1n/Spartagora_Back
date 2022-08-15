@@ -146,7 +146,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CORS_ALLOWED_ORIGINS = [
-    "https://d2b1lm00cp7z1g.cloudfront.net/",
+    "to.spartagora.com",
 ]
 
 AUTH_USER_MODEL = 'user.User'  # 커스텀 유저모델 사용할 때 꼭 설정해주기.
