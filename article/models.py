@@ -34,7 +34,6 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     lower_category = models.ForeignKey(LowerCategory, on_delete=models.CASCADE)
-    tags = TaggableManager(blank=True)
     count = models.IntegerField(default = 0)
     like = models.ManyToManyField(User, related_name="article_like", blank=True)
     nickname =models.CharField(max_length=50, default='')
