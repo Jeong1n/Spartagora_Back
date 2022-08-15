@@ -6,11 +6,19 @@ services:
     build: ./nginx
     volumes:
       - static_volume:/usr/src/app/static
+      - ./data/certbot/conf:/etc/letsencrupt
+      - ./data/certbot/www:/var/certbot
     ports:
       - 80:80
       - 443:443
     depends_on:
       - web
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrupt
+      - ./data/certbot/www:/var/certbot
       
   web:
     build: .
