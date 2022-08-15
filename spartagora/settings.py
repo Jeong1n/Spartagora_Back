@@ -147,7 +147,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CORS_ALLOWED_ORIGINS = [
-    "http://to.spartagora.com",
+    "https://to.spartagora.com",
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
