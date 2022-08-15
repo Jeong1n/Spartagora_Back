@@ -65,6 +65,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'spartagora.urls'
 
 TEMPLATES = [
@@ -149,6 +150,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://to.spartagora.com",
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 AUTH_USER_MODEL = 'user.User'  # 커스텀 유저모델 사용할 때 꼭 설정해주기.
 
 REST_FRAMEWORK = {
@@ -205,3 +208,56 @@ SIMPLE_JWT = {
 
 STATIC_ROOT = BASE_DIR / "static"
 STATIC_URL = 'static/'
+
+
+
+# 로그폴더 생성
+ROOT_DIR = os.path.dirname(BASE_DIR)
+LOG_DIR = os.path.join(ROOT_DIR, '.log')
+# 로그 폴더가 존재하지 않으면 폴더 생성
+if not os.path.exists(LOG_DIR):
+    os.makedirs(LOG_DIR, exist_ok=True)
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'default': {
+            'format': '[%(levelname)s] %(name)s (%(asctime)s)\n\t%(message)s'
+        },
+    },
+    'handlers': {
+        'file_error': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'ERROR',
+            'filename': os.path.join(LOG_DIR, 'error.log'),
+            'formatter': 'default',
+            'maxBytes': 10485760,
+            'backupCount': 10,
+        },
+        'file_info': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': 'INFO',
+            'filename': os.path.join(LOG_DIR, 'info.log'),
+            'formatter': 'default',
+            'maxBytes': 10485760,
+            'backupCount': 10,
+        },
+        # console에 StreamHandler는
+        # 터미널창에 표시
+        'console': {
+            'class': 'logging.StreamHandler',
+            'level': 'INFO',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': [
+                'file_error',
+                'file_info',
+                'console',
+            ],
+            'level': 'INFO',
+            'propagate': True,
+        }
+    }
+}
