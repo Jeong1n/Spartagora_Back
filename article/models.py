@@ -2,7 +2,6 @@ from re import T
 from django.db import models
 from django.forms import CharField
 from user.models import User
-from taggit.managers import TaggableManager
 # Create your models here.
 
 # like 모델,tag 앱 논의 필요

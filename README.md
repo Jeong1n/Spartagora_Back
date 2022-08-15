@@ -20,8 +20,6 @@
 * Django==4.0.6
 * django-classy-tags==3.0.1
 * django-cors-headers==3.13.0
-* django-taggit==3.0.0
-* django-taggit-templatetags2==1.6.1
 * djangorestframework==3.13.1
 * djangorestframework-simplejwt==5.2.0
 * jmespath==1.0.1
