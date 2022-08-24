@@ -11,26 +11,23 @@
    <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=SQLite&logoColor=white">
   </div>
 
-   
+
+## 주요 기능
+* 로그인 회원가입
+* 메인페이지
+* 글작성
+* 댓글
+* 베스트토픽
+* 취업 및 과정 후기
+
 ## Environment
-* asgiref==3.5.2
-* backports.zoneinfo==0.2.1
-* boto3==1.24.39
-* botocore==1.27.39
+
 * Django==4.0.6
-* django-classy-tags==3.0.1
 * django-cors-headers==3.13.0
 * djangorestframework==3.13.1
 * djangorestframework-simplejwt==5.2.0
 * jmespath==1.0.1
 * PyJWT==2.4.0
-* python-dateutil==2.8.2
-* pytz==2022.1
-* s3transfer==0.6.0
-* six==1.16.0
-* sqlparse==0.4.2
-* tzdata==2022.1
-* urllib3==1.26.11
 
 ## ERD
 ![image](https://user-images.githubusercontent.com/102134953/178625920-d3ef10a0-a71e-4b8f-a4c2-7daaf890eea1.png)
@@ -38,14 +35,6 @@
 ## API개발문서
 ![image](https://user-images.githubusercontent.com/102134953/178635347-82db6476-b1be-4758-a28d-7032ddab45e7.png)
 
-## 기능
-* 로그인 회원가입 : 김정후
-* 메인페이지 : 김정후 서정인
-* 글작성 : 서정인
-* 댓글 : 김정후
-* 베스트토픽 : 김정후 서정인
-* 취업 및 과정 후기 : 김정후 서정인
-* 머신러닝 글 필터링 : 안정환
 
 ## 팀원별 역할
 | 팀원 | 이름 | 역할 | 깃허브 |
