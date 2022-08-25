@@ -13,7 +13,7 @@
 
 
 ## 맡은 역할
-* 백앤드 모델 및 views작성
+* 백앤드 Models, serializers, views 작성
 * 게시글 보기
 * 게시글 작성
 * 취업 및 과정 후기
