@@ -1,5 +1,7 @@
 # Spartagora_Back
 최종프로젝트 스파르타고라 백엔드
+![image](https://user-images.githubusercontent.com/102134953/210927445-9a71ef77-9921-4430-b225-89998077100f.png)
+
 ## 프로젝트 주제 (스파르타고라)
 * sparta + agora = spartagora
    * 스파르타코딩클럽 과정을 수강중 혹은 수료한 학생들의 익명 커뮤니티
